@@ -1,6 +1,6 @@
 Functional:
-1.
-2.
+1.The system must allow for users to create different profiles for each family member.
+2.The system must allow users to switch between profiles while the app is open.
 3.
 4.
 5.
@@ -20,7 +20,7 @@ Functional:
 19.
 20.
 Non-Functional
-1.Platform - The system must run on an Android Nexus 5 Devie
+1.Platform - The system must run on an Android Nexus 5 Device.
 2.
 3.
 4.
