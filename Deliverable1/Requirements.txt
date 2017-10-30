@@ -20,7 +20,7 @@ Functional:
 19.
 20.
 Non-Functional
-1.
+1.Platform - The system must run on an Android Nexus 5 Devie
 2.
 3.
 4.
