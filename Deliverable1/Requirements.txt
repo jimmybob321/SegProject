@@ -1,9 +1,9 @@
 Functional:
 1.The system must allow for users to create different profiles for each family member.
 2.The system must allow users to switch between profiles while the app is open.
-3.
-4.
-5.
+3.The system must allow users to add and delete reminders.
+4.The system must allow users to log in to their personal profile.
+5.The system must allow users to view their personal reminders.
 6.
 7.
 8.
