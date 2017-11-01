@@ -1,16 +1,16 @@
 Functional:
 1.The system must allow for users to create different profiles for each family member.
 2.The system must allow users to switch between profiles while the app is open.
-3.The system must allow users to add and delete reminders.
+3.The system must allow users to add and delete their own reminders.
 4.The system must allow users to log in to their personal profile.
 5.The system must allow users to view their personal reminders.
-6.
-7.
-8.
-9.
-10.
-11.
-12.
+6.The system shall allow users to set their own profile pictures.
+7.The system shall allow parent users to assign reminders to their children.
+8.The system must allow users to set a due date for each reminder.
+9.The system shall allow users to assign a reward to each reminder.
+10.The system shall allow users to view their total score.
+11.The system shall allow users to mark reminders as completed.
+12.The system shall allow parent users to view the score of the child users.
 13.
 14.
 15.
@@ -21,7 +21,7 @@ Functional:
 20.
 Non-Functional
 1.Platform - The system must run on an Android Nexus 5 Device.
-2.
-3.
-4.
+2.Platform - The system must support Android API 15(IceCreamSandwich).
+3.Quality - The system shall support two parents and two children within a family.
+4.Platform - The system must support a Google Firebase Database.
 5.
