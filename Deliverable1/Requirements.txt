@@ -11,7 +11,7 @@ Functional:
 10.The system shall allow users to view their total score.
 11.The system shall allow users to mark reminders as completed.
 12.The system shall allow parent users to view the score of the child users.
-13.
+13.Test (K)
 14.
 15.
 16.
