@@ -11,11 +11,11 @@ Functional:
 10.The system shall allow users to view their total score.
 11.The system shall allow users to mark reminders as completed.
 12.The system shall allow parent users to view the score of the child users.
-13.The system shall allow child users to release an incomplete task if needed.
+13.The system shall allow child users to drop (release) an incomplete task if needed.
 14.The system shall allow dropped (released) tasks to be picked up again by child users.
-15.
-16.
-17.
+15.The system shall allow users to send messages to each other.
+16.The system shall notify parent users if a task is completed.
+17.The system shall notify parent users if an urgent task is due soon and incomplete.
 18.
 19.
 20.
