@@ -16,12 +16,12 @@ Functional:
 15.The system shall allow users to send messages to each other.
 16.The system shall notify parent users if a task is completed.
 17.The system shall notify parent users if an urgent task is due soon and incomplete.
-18.
-19.
-20.
+18.The system shall allow users to create/delete items for the Shopping and Materials list. 
+19.The system shall notify users for schedule conflicts.
+20.The system shall allow users to create tasks that may require to users to complete.
 Non-Functional
 1.Platform - The system must run on an Android Nexus 5 Device.
 2.Platform - The system must support Android API 15(IceCreamSandwich).
 3.Quality - The system shall support two parents and two children within a family.
 4.Platform - The system must support a Google Firebase Database.
-5.
+5.Quality -The system must have a backup on the cloud, allow users to restore the task log after a possible failure.
