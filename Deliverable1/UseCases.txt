@@ -1,4 +1,33 @@
 Use Cases:
 1.
+Name: Creation of User Profile
+Actors: User
+Goals: The addition of a new user profile for a member of the family.
+Preconditions: Any number of profiles already exist in the app database. 
+Summary: User creates new profile for a member of the family.
+Related Use Cases: Deletion of a user profile
+Steps:
+    i) User opens app. 
+    ii) User selects 'Create new profile'
+    iii) User enters information into required fields (Name, age, status, ect.)
+    iv) User selects a profile image for the profile.
+    v) User saves the profile information.
+Post Conditions: System database has a profile with no reminders/schedule set in addition to any pre-existing profiles.
+
 2.
+Name: Setting up a schedule
+Actors: User
+Goals: Creation of a schedule for selected profile
+Preconditions: Profile for a user has been created.
+Summary: User enters information of repeating tasks into system which will generate a schedule for a profile.
+Related Use Cases: Modification of an existing schedule
+Steps:
+    i) User selects an existing profile.
+    ii) User selects 'Create schedule'
+    iii) User creates a new task and fills out the name, description, repeats, time and more. Repeats this process for each new task as needed.
+    iv) User names the schedule.
+    v) User saves the schedule.
+
+Post Conditions: System Database has a new schedule tied to a user profile.
+
 3.
