@@ -31,3 +31,19 @@ Steps:
 Post Conditions: System Database has a new schedule tied to a user profile.
 
 3.
+Name: Creating a shopping list
+Actors: User
+Goals: Creation of a shopping list
+Preconditions: Profile for a user has been created
+Summary: User enters items that need to be purchased, creating a shopping list
+Related Use Cases:  Deleting items for shopping list
+Steps:
+    i) User selects an eisting profile.
+    ii) User selects "Create Shopping List"
+    iii) User enters date to go shopping.
+    iv) User enters name for shopping list
+    v) User clicks "Add item"
+    vi) User enters item name
+    vii) User enters optional comment for the item. User repeats this process for multiple items as needed.
+    viii) User saves the shopping list.
+Postconditions: System Database has a new shopping list tied to a user profile
