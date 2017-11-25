@@ -7,4 +7,5 @@
     <string name="btnLoginClick" />
     <string name="title_activity_parent_profile">parent_profile</string>
     <string name="title_activity_child_profile">child_profile</string>
+	<string name="title_activity_view_task">view_task</string>
 </resources>
