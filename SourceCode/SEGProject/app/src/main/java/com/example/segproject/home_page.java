@@ -1,14 +1,17 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class home_page extends AppCompatActivity {
-
+    boolean isParent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,15 +19,27 @@ public class home_page extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
+
+    }
+    public void ViewProfileClick(View view){
+        if(isParent) {
+            Intent intent = new Intent(getApplicationContext(),parent_profile.class);
+            startActivityForResult(intent, 0);
+        }
+        else{
+            Intent intent = new Intent(getApplicationContext(),child_profile.class);
+            startActivityForResult(intent, 0);
+        }
+    }
+    public void CreateTaskClick(View view){
+        Intent intent = new Intent(getApplicationContext(),create_task.class);
+        startActivityForResult (intent,0);
+    }
+    public void LogoutClick(View view){
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
 }

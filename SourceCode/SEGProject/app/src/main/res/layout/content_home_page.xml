@@ -41,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="LogoutClick"
                 android:text="Log Out" />
 
             <Button
@@ -48,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="ViewProfileClick"
                 android:text="View Profile" />
 
             <Button
@@ -55,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="CreateTaskClick"
                 android:text="Creat Task" />
         </LinearLayout>
     </LinearLayout>
