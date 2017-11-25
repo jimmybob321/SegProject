@@ -70,6 +70,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.segproject.home_page" />
         </activity>
+        <activity
+            android:name=".claim_task"
+            android:label="@string/title_activity_claim_task"
+            android:parentActivityName=".home_page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.segproject.home_page" />
+        </activity>
     </application>
 
 </manifest>
