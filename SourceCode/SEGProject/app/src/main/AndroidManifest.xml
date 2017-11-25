@@ -79,6 +79,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.segproject.home_page" />
         </activity>
+        <activity
+            android:name=".choose_photo"
+            android:label="@string/title_activity_choose_photo"
+            android:parentActivityName=".create_profile"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.segproject.create_profile" />
+        </activity>
     </application>
 
 </manifest>

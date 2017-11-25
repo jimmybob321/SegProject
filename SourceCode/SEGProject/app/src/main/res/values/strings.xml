@@ -9,4 +9,6 @@
     <string name="title_activity_child_profile">child_profile</string>
     <string name="title_activity_view_task">view_task</string>
     <string name="title_activity_claim_task">claim_task</string>
+    <string name="title_activity_view_task">view_task</string>
+    <string name="title_activity_choose_photo">choose_photo</string>
 </resources>
