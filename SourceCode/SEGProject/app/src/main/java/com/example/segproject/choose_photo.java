@@ -1,30 +1,30 @@
-package com.example.segproject;
+package com.koyukan.latest;
 
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 
-public class choose_photo extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_photo);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_main);
     }
+
+    public void SetProfileIcon(View view) {
+        Intent returnIntent = new Intent();
+        ImageView chosenImage = (ImageView) view;
+        returnIntent.putExtra("image", chosenImage.getId());
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
+
+
+
+
 
 }
