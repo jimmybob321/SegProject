@@ -4,5 +4,10 @@
     <string name="title_activity_home_page">home_page</string>
     <string name="title_activity_create_profile">create_profile</string>
     <string name="title_activity_create_task">create_task</string>
+<<<<<<< HEAD
     <string name="btnLoginClick" />
+=======
+    <string name="title_activity_parent_profile">parent_profile</string>
+    <string name="title_activity_child_profile">child_profile</string>
+>>>>>>> master
 </resources>

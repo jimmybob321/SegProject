@@ -43,6 +43,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.segproject.home_page" />
         </activity>
+        <activity
+            android:name=".parent_profile"
+            android:label="@string/title_activity_parent_profile"
+            android:parentActivityName=".home_page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.segproject.home_page" />
+        </activity>
+        <activity
+            android:name=".child_profile"
+            android:label="@string/title_activity_child_profile"
+            android:parentActivityName=".home_page"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.segproject.home_page" />
+        </activity>
     </application>
 
 </manifest>
