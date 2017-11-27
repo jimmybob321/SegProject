@@ -59,12 +59,14 @@
                 android:id="@+id/btnClaim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ClaimClick"
                 android:text="Claim Task" />
 
             <Button
                 android:id="@+id/btnAssign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="AssignClick"
                 android:text="Assign to child (Parent Only)" />
         </LinearLayout>
 

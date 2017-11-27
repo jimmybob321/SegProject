@@ -40,6 +40,7 @@
         android:id="@+id/btnCreateParent"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:onClick="CreateParentClick"
         android:text="create parent profile"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="365dp" />
@@ -48,6 +49,7 @@
         android:id="@+id/btnCreateChild"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:onClick="CreateChildClick"
         android:text="create child profile"
         tools:layout_editor_absoluteX="193dp"
         tools:layout_editor_absoluteY="365dp" />

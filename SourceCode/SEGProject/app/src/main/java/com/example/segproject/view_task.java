@@ -29,8 +29,21 @@ public class view_task extends AppCompatActivity {
     }
     private void completeTask(){
         // needs Implementation
+
+
+
+
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
     }
     private void declineTask(){
         // Needs Implementation
+
+
+
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
     }
 }
