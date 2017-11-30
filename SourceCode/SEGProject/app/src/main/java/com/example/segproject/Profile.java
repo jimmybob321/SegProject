@@ -69,5 +69,8 @@ public class Profile implements Serializable{
     public void removeTask(Task TaskToRemove){
         //remove task from list
     }
+    public void addTask(Task TaskToAdd){
+        //add task to list
+    }
 
 }
