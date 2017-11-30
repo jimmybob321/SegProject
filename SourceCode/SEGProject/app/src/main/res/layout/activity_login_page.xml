@@ -80,19 +80,10 @@
             android:text="Account Type"
             android:textAlignment="center" />
 
-        <LinearLayout
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:gravity="bottom"
             android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radParent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Parent" />
 
             <RadioButton
                 android:id="@+id/radChild"
@@ -100,12 +91,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Child" />
-        </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/radParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Parent" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/btnCreateAccount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="btnCreateAccountClick"
             android:text="Create Account" />
 
     </LinearLayout>

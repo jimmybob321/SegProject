@@ -5,7 +5,7 @@ import java.io.Serializable;
  */
 
 public class Profile implements Serializable{
-    private String _id;
+
     private String _name;
     private String _password;
     private int _score;
@@ -14,16 +14,13 @@ public class Profile implements Serializable{
     public Profile(){
 
     }
-    public Profile(String id, String name, String password, int score, String type){
-        _id = id;
+    public Profile( String name, String password, int score, String type){
+
         _name = name;
         _password = password;
         _score = score;
         _type = type;
         _img = "";
-    }
-    public String get_id(){
-        return _id;
     }
 
     public int get_score() {
@@ -36,10 +33,6 @@ public class Profile implements Serializable{
 
     public String get_password() {
         return _password;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
     }
 
     public void set_name(String _name) {
