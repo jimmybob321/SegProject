@@ -1,20 +1,23 @@
 package com.example.segproject;
-
+import java.io.Serializable;
 /**
  * Created by jamesmorrill on 2017-11-30.
  */
 
-public class Profile {
+public class Profile implements Serializable{
     private String _id;
     private String _name;
     private String _password;
     private int _score;
     private String _type;
+    private String _img;
     public Profile(String id, String name, String password, int score, String type){
         _id = id;
         _name = name;
         _password = password;
         _score = score;
+        _type = type;
+        _img = "";
     }
     public String get_id(){
         return _id;
@@ -55,4 +58,13 @@ public class Profile {
     public void set_type(String _type) {
         this._type = _type;
     }
+
+    public String get_img() {
+        return _img;
+    }
+
+    public void set_img(String _img) {
+        this._img = _img;
+    }
+
 }

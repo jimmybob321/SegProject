@@ -13,11 +13,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.Serializable;
 
 public class LoginPage extends AppCompatActivity {
     EditText username;
     EditText password;
     DatabaseReference databaseProfiles;
+    List<Profile> profiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,9 @@ public class LoginPage extends AppCompatActivity {
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
         databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
+        profiles = new ArrayList<>();
+
+
     }
 
 
