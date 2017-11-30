@@ -9,7 +9,8 @@ public class Profile {
     private String _name;
     private String _password;
     private int _score;
-    public Profile(String id, String name, String password, int score){
+    private String _type;
+    public Profile(String id, String name, String password, int score, String type){
         _id = id;
         _name = name;
         _password = password;
@@ -46,5 +47,12 @@ public class Profile {
     public void set_score(int _score) {
         this._score = _score;
     }
-    
+
+    public String get_type() {
+        return _type;
+    }
+
+    public void set_type(String _type) {
+        this._type = _type;
+    }
 }
