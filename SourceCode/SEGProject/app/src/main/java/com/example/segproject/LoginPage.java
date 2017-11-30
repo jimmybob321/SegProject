@@ -56,8 +56,8 @@ public class LoginPage extends AppCompatActivity {
                 System.out.println();
             }
 
-            @Override public void onCancelled() { }
-        });
+            @Override public void onCancelled(DatabaseError error) { }
+            });
 
         Intent intent = new Intent(getApplicationContext(),home_page.class);
         intent.putExtra("Profile", USER);
