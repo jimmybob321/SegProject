@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.segproject.view_task"
+    tools:layout_editor_absoluteY="25dp"
     tools:showIn="@layout/activity_view_task">
 
     <LinearLayout
@@ -76,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="DeclineClick"
                     android:text="Decline Task" />
 
                 <Button
@@ -83,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:onClick="CompleteClick"
                     android:text="Complete Task" />
             </LinearLayout>
 
@@ -90,6 +93,7 @@
                 android:id="@+id/btnReturn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="ReturnClick"
                 android:text="Return" />
         </LinearLayout>
     </LinearLayout>

@@ -38,6 +38,13 @@ public class home_page extends AppCompatActivity {
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
-        //test comment
+
     }
+
+    public void ChoosePhotoButton(View view){
+        //Opens the choose photo page
+        Intentintent=newIntent(getApplicationContext(),choose_photo.class);
+        startActivityForResult(intent,0);}
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,6 +26,29 @@ public class create_profile extends AppCompatActivity {
             }
         });*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    public void CreateParentClick(View view) {
+    //implement profile creation code here
+
+
+
+
+
+        //go to home page
+        Intent intent = new Intent(getApplicationContext(),home_page.class);
+        startActivityForResult(intent, 0);
+    }
+    public void CreateChildClick(View view) {
+        //implement profile creation code here
+
+
+
+
+
+
+        //go to home page
+        Intent intent = new Intent(getApplicationContext(),home_page.class);
+        startActivityForResult(intent, 0);
     }
 
 }
