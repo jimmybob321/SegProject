@@ -42,7 +42,7 @@ public class create_task extends AppCompatActivity {
         createTask(TaskName.getText().toString().trim(),TaskDate.getText().toString().trim(),Integer.parseInt(TaskPriority.getText().toString().trim()),Integer.parseInt(TaskReward.getText().toString().trim()));
     }
     private void createTask(String name, String Date, int priority, int reward){
-        //implement creating task
+        // TODO implement creating task
 
 
 

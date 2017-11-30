@@ -29,7 +29,7 @@ public class create_profile extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     public void CreateParentClick(View view) {
-    //implement profile creation code here
+    // TODO implement profile creation code here
 
 
 
@@ -40,7 +40,7 @@ public class create_profile extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
     public void CreateChildClick(View view) {
-        //implement profile creation code here
+        // TODO implement profile creation code here
 
 
 
