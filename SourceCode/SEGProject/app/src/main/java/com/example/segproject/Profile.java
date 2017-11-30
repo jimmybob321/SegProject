@@ -69,5 +69,12 @@ public class Profile implements Serializable{
     public void set_img(String _img) {
         this._img = _img;
     }
+    //TODO add implementation for below classes once database is fixed
+    public void removeTask(Task TaskToRemove){
+        //remove task from list
+    }
+    public void addTask(Task TaskToAdd){
+        //add task to list
+    }
 
 }
