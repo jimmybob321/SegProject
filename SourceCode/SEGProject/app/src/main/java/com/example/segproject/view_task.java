@@ -32,14 +32,14 @@ public class view_task extends AppCompatActivity {
     private void completeTask(Task compTask){
 
         int scoreToAdd = compTask.getReward();
-        //Profile.set_Score(Profile.get_score + scoreToAdd);
+        USER.set_score(USER.get_score() + scoreToAdd);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
     }
     private void declineTask(Task delTask){
-        //Profile.RemoveTask(delTask);
-        //ProfileUnassigned.AddTask(delTask);
+        USER.removeTask(delTask);
+        //UNASSIGNEDUSER.AddTask(delTask);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
