@@ -39,6 +39,7 @@ public class view_task extends AppCompatActivity {
     }
     private void declineTask(Task delTask){
         USER.removeTask(delTask);
+        //TODO add to unassigned user once database is fixed
         //UNASSIGNEDUSER.AddTask(delTask);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);

@@ -27,4 +27,5 @@ public class parent_profile extends AppCompatActivity {
         finish();
 
     }
+    //Need to display child profiles and tasks
 }

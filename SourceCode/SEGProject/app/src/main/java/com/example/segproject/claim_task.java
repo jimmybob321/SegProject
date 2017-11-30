@@ -23,20 +23,17 @@ public class claim_task extends AppCompatActivity {
         USER = (Profile) getIntent().getSerializableExtra("Profile");
         T = new Task("",1,"",1);//blank to not cause errors we still need to figure out how to pass an object to this page
     }
-    private void ClaimClick(){
+    public void ClaimClick(){
+
         USER.addTask(T);
-
-
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
     }
-    private void AssignClick(){
-
-
-
-
-
+    public void AssignClick(){
+        //TODO find child user once database is fixed
+        //need to get child class then assign it
+        //child.addTask(T);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
