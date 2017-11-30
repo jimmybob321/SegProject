@@ -11,6 +11,9 @@ public class Profile implements Serializable{
     private int _score;
     private String _type;
     private String _img;
+    public Profile(){
+
+    }
     public Profile(String id, String name, String password, int score, String type){
         _id = id;
         _name = name;

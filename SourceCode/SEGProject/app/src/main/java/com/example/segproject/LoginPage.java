@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 
+
 public class LoginPage extends AppCompatActivity {
     EditText username;
     EditText password;
@@ -42,15 +43,27 @@ public class LoginPage extends AppCompatActivity {
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
         Login(username.getText().toString().trim(),password.getText().toString().trim());
+
     }
 
     private void Login(String user, String pass){
         //james implement this method
+
         Profile USER = new Profile("","","",1,"");// dummy profile
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
+        dR.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snap) {
+                System.out.println();
+            }
+
+            @Override public void onCancelled() { }
+        });
 
         Intent intent = new Intent(getApplicationContext(),home_page.class);
         intent.putExtra("Profile", USER);
         startActivityForResult (intent,0);
+
     }
 
 }

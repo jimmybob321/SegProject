@@ -35,6 +35,8 @@ public class create_profile extends AppCompatActivity {
 
 
 
+
+
         //go to home page
         Intent intent = new Intent(getApplicationContext(),home_page.class);
         startActivityForResult(intent, 0);
