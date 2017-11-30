@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.38"
+            android:onClick="@string/title_activity_choose_photo"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <TextView
