@@ -47,8 +47,43 @@ public class home_page extends AppCompatActivity {
 
     public void ChoosePhotoButton(View view){
         //Opens the choose photo page
-        Intentintent=newIntent(getApplicationContext(),choose_photo.class);
-        startActivityForResult(intent,0);}
+        Intent intent= new Intent(getApplicationContext(),choose_photo.class);
+        startActivityForResult(intent,0);
+    }
+
+    @Override
+    protected void onActivityResult (int requestCode,int resultCode,Intent data){
+        if(resultCode==RESULT_CANCELED)return;
+        //Getting the Avatar Image we show to our users
+        ImageView avatarImage =(ImageView)findViewById(R.id.avatarImage);
+
+        // Figuring out the correct image
+        String drawableName ="ic_logo_00";
+        switch(data.getIntExtra("imageID",R.id.teamid00)){
+            caseR.id.teamid00:
+                drawableName="ic_logo_00";
+                break;
+            caseR.id.teamid01:
+                drawableName="ic_logo_01";
+                break;
+            caseR.id.teamid02:
+                drawableName="ic_logo_02";
+                break;
+            caseR.id.teamid03:
+                drawableName="ic_logo_03";
+                break;
+            caseR.id.teamid04:
+                drawableName="ic_logo_04";
+                break;
+            caseR.id.teamid05:
+                drawableName="ic_logo_05";
+                break;
+            default:
+                drawableName="ic_logo_00";
+                break;
+        }
+        intresID=getResources().getIdentifier(drawableName,"drawable",getPackageName());avatarImage.setImageResource(resID);
+    }
 
 
 }
