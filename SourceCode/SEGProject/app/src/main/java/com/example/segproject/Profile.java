@@ -66,5 +66,8 @@ public class Profile implements Serializable{
     public void set_img(String _img) {
         this._img = _img;
     }
+    public void removeTask(Task TaskToRemove){
+        //remove task from list
+    }
 
 }
