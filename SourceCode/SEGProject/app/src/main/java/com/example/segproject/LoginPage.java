@@ -45,7 +45,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     private void Login(String user, String pass){
-        //james implement this method
+        //TODO james implement this login method
         Profile USER = new Profile("","","",1,"");// dummy profile
 
         Intent intent = new Intent(getApplicationContext(),home_page.class);
