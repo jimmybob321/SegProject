@@ -7,7 +7,7 @@ public class Task {
     private String Date;
     private int Priority;
 
-    Task(String Title, int Reward, String Date, int Priority){
+    public Task(String Title, int Reward, String Date, int Priority){
         this.Title = Title;
         this.Reward = Reward;
         this.Date = Date;
