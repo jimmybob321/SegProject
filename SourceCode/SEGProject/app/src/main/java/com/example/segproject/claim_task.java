@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 public class claim_task extends AppCompatActivity {
-
+    Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +19,7 @@ public class claim_task extends AppCompatActivity {
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
     }
     private void ClaimClick(){
 

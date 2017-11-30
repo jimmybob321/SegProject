@@ -18,6 +18,7 @@ public class create_task extends AppCompatActivity {
     EditText TaskPriority;
     EditText TaskReward;
     EditText TaskUser;
+    Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class create_task extends AppCompatActivity {
         TaskPriority = (EditText) findViewById(R.id.txtReward);
         TaskReward = (EditText) findViewById(R.id.txtPriority);
         TaskUser = (EditText) findViewById(R.id.txtAssignUser);
-
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
 
 
 

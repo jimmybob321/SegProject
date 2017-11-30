@@ -10,10 +10,12 @@ import android.view.View;
 
 public class view_task extends AppCompatActivity {
     Task T;
+    Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_task);
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
         T = new Task("",1,"",1);//blank to not cause errors we still need to figure out how to pass an object to this page
     }
     public void CompleteClick(View view){
