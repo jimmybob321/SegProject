@@ -23,7 +23,8 @@ public class LoginPage extends AppCompatActivity {
     EditText password;
     DatabaseReference databaseProfiles;
     List<Profile> profiles;
-
+    String user;
+    String pass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,18 +43,26 @@ public class LoginPage extends AppCompatActivity {
     public void btnLoginClick(View view){
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
-        Login(username.getText().toString().trim(),password.getText().toString().trim());
-
-    }
-
-    private void Login(String user, String pass){
         //TODO james implement this login method
         Profile USER = new Profile("","","",1,"");// dummy profile
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
         dR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snap) {
-                System.out.println();
+               Profile USER= snap.getValue(Profile.class);
+                String user = username.getText().toString().trim();
+                String pass = username.getText().toString().trim();
+               if(USER.get_id().equals(user) && USER.get_password()==pass){
+
+                   //TOAST HERE
+                   Intent intent = new Intent(getApplicationContext(),home_page.class);
+                   intent.putExtra("Profile", USER);
+                   startActivityForResult (intent,0);
+               }
+               else{
+                   //TOAST HERE
+               }
+
             }
 
             @Override public void onCancelled(DatabaseError error) { }
@@ -65,4 +74,18 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    public void btnCreateAccountClick(View view) {
+        username = (EditText) findViewById(R.id.txtUser);
+        password = (EditText) findViewById(R.id.txtPassword);
+        String user = username.getText().toString().trim();
+        String pass = username.getText().toString().trim();
+        
+    }
+
+
+
+
 }
+
+
+
