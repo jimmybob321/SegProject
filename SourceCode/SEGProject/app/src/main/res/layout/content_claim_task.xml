@@ -55,12 +55,13 @@
             android:layout_weight="0"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnClaim"
+            <EditText
+                android:id="@+id/txtChild"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="ClaimClick"
-                android:text="Claim Task" />
+                android:ems="10"
+                android:hint="Enter Child's Name"
+                android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/btnAssign"
@@ -68,6 +69,17 @@
                 android:layout_height="wrap_content"
                 android:onClick="AssignClick"
                 android:text="Assign to child (Parent Only)" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <Button
+                android:id="@+id/btnClaim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ClaimClick"
+                android:text="Claim Task" />
         </LinearLayout>
 
     </LinearLayout>

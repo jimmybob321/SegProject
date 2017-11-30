@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 
 public class choose_photo extends AppCompatActivity {
-
+    Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +26,13 @@ public class choose_photo extends AppCompatActivity {
         setContentView(R.layout.activity_choose_photo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+<<<<<<< HEAD
 >>>>>>> 779e829b5ee83dcef4ec1a5d49dc957f0e1d1a7d
+=======
+
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
+>>>>>>> 89954a3c455793fcc50046a764900219a22dd9be
     }
 
 

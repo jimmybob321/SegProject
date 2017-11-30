@@ -12,26 +12,30 @@ import android.widget.Button;
 
 public class home_page extends AppCompatActivity {
     boolean isParent;
+    Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
 
 
     }
     public void ViewProfileClick(View view){
         if(isParent) {
             Intent intent = new Intent(getApplicationContext(),parent_profile.class);
+            intent.putExtra("Profile", USER);
             startActivityForResult(intent, 0);
         }
         else{
             Intent intent = new Intent(getApplicationContext(),child_profile.class);
+            intent.putExtra("Profile", USER);
             startActivityForResult(intent, 0);
         }
     }
     public void CreateTaskClick(View view){
         Intent intent = new Intent(getApplicationContext(),create_task.class);
+        intent.putExtra("Profile", USER);
         startActivityForResult (intent,0);
     }
     public void LogoutClick(View view){

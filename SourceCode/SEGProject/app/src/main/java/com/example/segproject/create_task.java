@@ -18,6 +18,8 @@ public class create_task extends AppCompatActivity {
     EditText TaskPriority;
     EditText TaskReward;
     EditText TaskUser;
+    Profile USER;
+    Task T;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class create_task extends AppCompatActivity {
         TaskPriority = (EditText) findViewById(R.id.txtReward);
         TaskReward = (EditText) findViewById(R.id.txtPriority);
         TaskUser = (EditText) findViewById(R.id.txtAssignUser);
-
+        USER = (Profile) getIntent().getSerializableExtra("Profile");
 
 
 
@@ -38,14 +40,26 @@ public class create_task extends AppCompatActivity {
         TaskPriority = (EditText) findViewById(R.id.txtReward);
         TaskReward = (EditText) findViewById(R.id.txtPriority);
         TaskUser = (EditText) findViewById(R.id.txtAssignUser);
-        createTask(TaskName.getText().toString().trim(),TaskDate.getText().toString().trim(),Integer.parseInt(TaskPriority.getText().toString().trim()),Integer.parseInt(TaskReward.getText().toString().trim()));
-    }
+        if(TaskUser.getText().toString().trim() != "") {
+            createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()));
+        }
+        else{
+            AssignNewTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()),TaskUser.getText().toString().trim());
+        }
+        }
+
     private void createTask(String name, String Date, int priority, int reward){
-        //implement creating task
-
-
-
-
+        T = new Task(name,reward,Date,priority);
+        USER.addTask(T);
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
+    private void AssignNewTask(String name, String Date, int priority, int reward, String user){
+        T = new Task(name,reward,Date,priority);
+        //TODO find child user once database is fixed
+        //get user
+        //USERgiven.addTask(T);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
