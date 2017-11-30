@@ -43,6 +43,7 @@ public class LoginPage extends AppCompatActivity {
     public void btnLoginClick(View view){
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
+        String user = username.getText().toString().trim();
         //TODO james implement this login method
         Profile USER = new Profile("","",1,"");// dummy profile
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
@@ -88,7 +89,7 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-        
+
         //creating a Product Object
         Profile profile = new Profile(user, pass,0,type);
 
