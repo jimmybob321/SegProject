@@ -44,7 +44,7 @@ public class LoginPage extends AppCompatActivity {
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
         //TODO james implement this login method
-        Profile USER = new Profile("","","",1,"");// dummy profile
+        Profile USER = new Profile("","",1,"");// dummy profile
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
         dR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -52,7 +52,7 @@ public class LoginPage extends AppCompatActivity {
                Profile USER= snap.getValue(Profile.class);
                 String user = username.getText().toString().trim();
                 String pass = username.getText().toString().trim();
-               if(USER.get_id().equals(user) && USER.get_password()==pass){
+               if(USER.get_name().equals(user) && USER.get_password()==pass){
 
                    //TOAST HERE
                    Intent intent = new Intent(getApplicationContext(),home_page.class);
@@ -79,7 +79,23 @@ public class LoginPage extends AppCompatActivity {
         password = (EditText) findViewById(R.id.txtPassword);
         String user = username.getText().toString().trim();
         String pass = username.getText().toString().trim();
+
+
+
+
+        String type = "";
+        //TODO jarod do this one
+
+
+
         
+        //creating a Product Object
+        Profile profile = new Profile(user, pass,0,type);
+
+        //Saving the Product
+        databaseProfiles.child(user).setValue(profile);
+
+
     }
 
 
