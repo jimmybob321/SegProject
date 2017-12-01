@@ -165,6 +165,14 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+
+
+
+    //********function influenced by:************************
+    //http://viralpatel.net/blogs/java-md5-hashing-salting-password/
+    //https://docs.oracle.com/javase/7/docs/api/java/security/MessageDigest.html
+    //https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
+    //************************************************************
     private static String hash(String str)throws NoSuchAlgorithmException{
         String salt ="hr4hg83f7g47fg847gf8hrehwf8cwge8fg";
         str = str+salt;// salt the password
