@@ -28,4 +28,5 @@ public class parent_profile extends AppCompatActivity {
 
     }
     //TODO Need to display child profiles and tasks
+
 }
