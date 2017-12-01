@@ -54,6 +54,10 @@ public class parent_profile extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Task task = tasks.get(i);
+                Intent intent = new Intent(getApplicationContext(), view_task.class);
+                intent.putExtra("Profile", USER);
+                intent.putExtra("Task",task);
+                startActivityForResult(intent, 0);
                 return true;
             }
         });

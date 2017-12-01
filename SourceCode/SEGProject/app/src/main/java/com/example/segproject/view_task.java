@@ -23,6 +23,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,16 +39,23 @@ public class view_task extends AppCompatActivity {
     Task T;
     Profile USER;
     DatabaseReference databaseProfiles;
+    TextView taskName,taskDate,taskReward;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_task);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
-        T = new Task("",1,"",1,"unassigned");
-        //TODO need to be passed a task
-        //blank to not cause errors we still need to figure out how to pass an object to this page
-        //T = (Task) getIntent().getSerializableExtra("Task");
+        T = (Task) getIntent().getSerializableExtra("Task");
+
+        taskName = findViewById(R.id.txtName);
+        taskDate = findViewById(R.id.txtDate);
+        taskReward = findViewById(R.id.txtReward);
+
+        taskName.setText(T.getTitle());
+        taskDate.setText(T.getDate());
+        taskReward.setText(Integer.toString(T.getReward()));
+
     }
     public void CompleteClick(View view){
         completeTask(T);
@@ -64,6 +72,11 @@ public class view_task extends AppCompatActivity {
 
         int scoreToAdd = compTask.getReward();
         USER.set_score(USER.get_score() + scoreToAdd);
+
+        databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T.getTitle());
+        dR.setValue(null);
+
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
@@ -75,9 +88,12 @@ public class view_task extends AppCompatActivity {
         String assign = T.getUser();
 
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
         Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),"unassigned");
         dR.setValue(T2);
+
+        dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T.getTitle());
+        dR.setValue(null);
         /*dR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snap) {
