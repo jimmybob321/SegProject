@@ -20,9 +20,18 @@
             android:layout_weight="0"
             android:text="Task Name:" />
 
+        <EditText
+            android:id="@+id/newName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Enter New Name"
+            android:inputType="textPersonName" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="20dp"
             android:layout_weight="0" />
 
         <TextView
@@ -32,9 +41,18 @@
             android:layout_weight="0"
             android:text="Due Date:" />
 
+        <EditText
+            android:id="@+id/newDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Enter New Date (DD/MM/YYYY)"
+            android:inputType="textPersonName" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="20dp"
             android:layout_weight="0" />
 
         <TextView
@@ -44,9 +62,18 @@
             android:layout_weight="0"
             android:text="Reward:" />
 
+        <EditText
+            android:id="@+id/newReward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Enter New Reward"
+            android:inputType="number" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="20dp"
             android:layout_weight="0" />
 
         <LinearLayout

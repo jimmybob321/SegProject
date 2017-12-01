@@ -41,9 +41,9 @@ public class claim_task extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
-        //TODO need to be passed a task
-        //T = (Task) getIntent().getSerializableExtra("Task"); will uncomment out when we get the display working
-        T = new Task("",1,"",1,"");//blank to not cause errors we still need to figure out how to pass an object to this page
+
+        T = (Task) getIntent().getSerializableExtra("Task"); //will uncomment out when we get the display working
+        //T = new Task("",1,"",1,"");//blank to not cause errors we still need to figure out how to pass an object to this page
     }
     public void ClaimClick(View view){
 
@@ -59,10 +59,10 @@ public class claim_task extends AppCompatActivity {
     public void AssignClick(View view){
         //TODO add toast for exception
         Child = (EditText) findViewById(R.id.txtChild);
-        String child = Child.getText().toString().trim();
+        String childName = Child.getText().toString().trim();
         try{
             databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
-            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(childName).child(T.getTitle());
             Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),"unassigned");
             dR.setValue(T2);
         }

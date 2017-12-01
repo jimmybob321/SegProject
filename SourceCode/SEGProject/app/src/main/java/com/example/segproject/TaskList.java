@@ -32,9 +32,9 @@ public class TaskList extends ArrayAdapter<Task> {
         TextView txtReward = (TextView) listViewItem.findViewById(R.id.txtReward);
 
         Task task = tasks.get(position);
-        txtName.setText(task.getTitle());
-        txtDate.setText(task.getDate());
-        txtReward.setText(task.getReward());
+        txtName.setText(new StringBuilder("Name: ").append(task.getTitle()));
+        txtDate.setText(new StringBuilder("Due Date:").append(task.getDate()));
+        txtReward.setText(new StringBuilder("Reward: ").append(task.getReward()));
         return listViewItem;
     }
 

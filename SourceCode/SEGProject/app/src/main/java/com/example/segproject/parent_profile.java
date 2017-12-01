@@ -8,22 +8,39 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class parent_profile extends AppCompatActivity {
     Profile USER;
     TextView name, score;
     ImageView avatar;
+
+    DatabaseReference dR;
+    ListView listViewTasks;
+    ArrayList<Task> tasks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_profile);
-
         USER = (Profile) getIntent().getSerializableExtra("Profile");
+
+        listViewTasks = (ListView) findViewById(R.id.listViewTasks);
+        tasks = new ArrayList<>();
+        dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name());
+
         avatar = (ImageView) findViewById(R.id.imgAvatar);
         name = (TextView) findViewById(R.id.txtName);
         score = (TextView) findViewById(R.id.txtScore);
@@ -32,6 +49,39 @@ public class parent_profile extends AppCompatActivity {
         int resID = getResources().getIdentifier(USER.get_img(), "drawable", getPackageName());
         avatar.setImageResource(resID);
 
+
+        listViewTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Task task = tasks.get(i);
+                return true;
+            }
+        });
+
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        dR.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snap) {
+                tasks.clear();
+
+                for (DataSnapshot postSnapshot : snap.getChildren()) {
+                    Task task = postSnapshot.getValue(Task.class);
+                    tasks.add(task);
+                }
+
+                //adapter
+                TaskList tasksAdapter = new TaskList(parent_profile.this, tasks);
+                listViewTasks.setAdapter(tasksAdapter);
+            }
+            @Override
+            public  void onCancelled(DatabaseError error){
+            }
+        });
     }
 
     public void ReturnClick(View view){

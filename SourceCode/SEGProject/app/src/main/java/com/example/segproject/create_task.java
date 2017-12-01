@@ -93,17 +93,18 @@ public class create_task extends AppCompatActivity {
 
     public void CreateTaskClick(View view){
         if(!TaskUser.getText().toString().trim().equals("")) {
-            createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()));
+            createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()), TaskUser.getText().toString().trim());
         }
         else{
-            AssignNewTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()),TaskUser.getText().toString().trim());
+            createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()), "unassigned");
         }
     }
 
-    private void createTask(String name, String Date, int priority, int reward){
+    private void createTask(String name, String Date, int priority, int reward, String user){
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
-        T = new Task(name,reward,Date,priority,"unassigned");
-        databaseTasks.child(name).setValue(T);
+        T = new Task(name,reward,Date,priority,user);
+        databaseTasks.child(user).child(name).setValue(T);
+        Toast.makeText(this, "Task Created.", Toast.LENGTH_SHORT).show();
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
@@ -111,7 +112,7 @@ public class create_task extends AppCompatActivity {
     private void AssignNewTask(String name, String Date, int priority, int reward, String user) {
         databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
         T = new Task(name, reward, Date, priority,user);
-        databaseTasks.child(name).setValue(T);
+        databaseTasks.child(user).child(name).setValue(T);
         /*try{
             databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
