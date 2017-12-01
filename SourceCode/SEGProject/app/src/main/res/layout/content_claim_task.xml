@@ -107,6 +107,16 @@
                 android:layout_height="wrap_content"
                 android:onClick="ClaimClick"
                 android:text="Claim Task" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp" />
+
+            <Button
+                android:id="@+id/btnSaveChanges"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save Changes" />
         </LinearLayout>
 
     </LinearLayout>

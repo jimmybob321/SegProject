@@ -15,12 +15,14 @@
         android:id="@+id/txtReward"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
         android:text="Reward:" />
 
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
         android:text="Due Date:" />
 
 </LinearLayout>

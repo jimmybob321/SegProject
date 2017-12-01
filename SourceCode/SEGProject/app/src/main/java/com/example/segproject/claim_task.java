@@ -52,6 +52,9 @@ public class claim_task extends AppCompatActivity {
         new_Name.setText(T.getTitle());
         new_Date.setText(T.getDate());
         new_Reward.setText(Integer.toString(T.getReward()));
+        if (USER.isParent()){
+
+        }
     }
     public void ClaimClick(View view){
         String NewNAME = new_Name.getText().toString().trim();

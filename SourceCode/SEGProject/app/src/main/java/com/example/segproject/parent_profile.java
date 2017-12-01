@@ -28,9 +28,10 @@ public class parent_profile extends AppCompatActivity {
     TextView name, score;
     ImageView avatar;
 
-    DatabaseReference dR;
-    ListView listViewTasks;
+    DatabaseReference dRTasks, dRChildren;
+    ListView listViewTasks, listViewChild;
     ArrayList<Task> tasks;
+    ArrayList<Profile> children;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +39,11 @@ public class parent_profile extends AppCompatActivity {
         USER = (Profile) getIntent().getSerializableExtra("Profile");
 
         listViewTasks = (ListView) findViewById(R.id.listViewTasks);
+        listViewChild = (ListView) findViewById(R.id.listViewChildren);
         tasks = new ArrayList<>();
-        dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name());
+        children = new ArrayList<>();
+        dRTasks = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name());
+        dRChildren = FirebaseDatabase.getInstance().getReference("profiles");
 
         avatar = (ImageView) findViewById(R.id.imgAvatar);
         name = (TextView) findViewById(R.id.txtName);
@@ -62,13 +66,14 @@ public class parent_profile extends AppCompatActivity {
             }
         });
 
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        dR.addListenerForSingleValueEvent(new ValueEventListener() {
+        dRTasks.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snap) {
                 tasks.clear();
@@ -81,6 +86,25 @@ public class parent_profile extends AppCompatActivity {
                 //adapter
                 TaskList tasksAdapter = new TaskList(parent_profile.this, tasks);
                 listViewTasks.setAdapter(tasksAdapter);
+            }
+            @Override
+            public  void onCancelled(DatabaseError error){
+            }
+        });
+        dRChildren.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snap) {
+                children.clear();
+
+                for (DataSnapshot postSnapshot : snap.getChildren()) {
+                    Profile child = postSnapshot.getValue(Profile.class);
+                    if (!child.isParent())
+                        children.add(child);
+                }
+
+                //adapter
+                ProfileList childAdapter = new ProfileList(parent_profile.this, children);
+                listViewChild.setAdapter(childAdapter);
             }
             @Override
             public  void onCancelled(DatabaseError error){
