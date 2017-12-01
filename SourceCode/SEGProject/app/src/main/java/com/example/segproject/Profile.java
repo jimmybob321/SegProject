@@ -1,4 +1,6 @@
 package com.example.segproject;
+import android.graphics.drawable.Drawable;
+
 import java.io.Serializable;
 /**
  * Created by jamesmorrill on 2017-11-30.
@@ -10,17 +12,17 @@ public class Profile implements Serializable{
     private String _password;
     private int _score;
     private String _type;
-    private String _img;
+    private Drawable _img;
     public Profile(){
 
     }
-    public Profile( String name, String password, int score, String type){
+    public Profile( String name, String password, int score, String type, Drawable img){
 
         _name = name;
         _password = password;
         _score = score;
         _type = type;
-        _img = "";
+        _img = img;
     }
 
     public int get_score() {
@@ -55,11 +57,11 @@ public class Profile implements Serializable{
         this._type = _type;
     }
 
-    public String get_img() {
+    public Drawable get_img() {
         return _img;
     }
 
-    public void set_img(String _img) {
+    public void set_img(Drawable _img) {
         this._img = _img;
     }
     //TODO add implementation for below classes once database is fixed

@@ -1,6 +1,7 @@
 package com.example.segproject;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -81,6 +83,8 @@ public class LoginPage extends AppCompatActivity {
         int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
         avatarImage.setImageResource(resID);
 
+        Toast.makeText(getApplicationContext(), "Avatar Updated", Toast.LENGTH_LONG).show();
+
     }
 
     public void btnLoginClick(View view){
@@ -88,7 +92,7 @@ public class LoginPage extends AppCompatActivity {
         password = (EditText) findViewById(R.id.txtPassword);
         String user = username.getText().toString().trim();
         //TODO james implement this login method
-        Profile USER = new Profile("","",1,"");// dummy profile
+        Profile USER = new Profile("","",1,"",null);// dummy profile
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
         dR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -124,6 +128,8 @@ public class LoginPage extends AppCompatActivity {
         String user = username.getText().toString().trim();
         String pass = username.getText().toString().trim();
 
+        ImageView avatarImage = (ImageView) findViewById(R.id.imbtnAvatar);
+        Drawable image = avatarImage.getDrawable();
 
 
         RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
@@ -135,7 +141,7 @@ public class LoginPage extends AppCompatActivity {
 
 
         //creating a Product Object
-        Profile profile = new Profile(user, pass,0,type);
+        Profile profile = new Profile(user, pass,0,type, image);
 
         //Saving the Product
         databaseProfiles.child(user).setValue(profile);
