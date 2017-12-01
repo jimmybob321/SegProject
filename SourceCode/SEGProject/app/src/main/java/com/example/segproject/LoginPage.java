@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -83,11 +85,12 @@ public class LoginPage extends AppCompatActivity {
 
 
 
-
-        String type = "";
-        //TODO jarod do this one
-
-
+        RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
+        String type;
+        if (radChild.isChecked())
+            type = "Child";
+        else
+            type = "Parent";
 
 
         //creating a Product Object

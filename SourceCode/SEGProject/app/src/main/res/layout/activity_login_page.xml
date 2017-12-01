@@ -86,19 +86,20 @@
             android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/radParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Parent" />
+
+            <RadioButton
                 android:id="@+id/radChild"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Child" />
 
-            <RadioButton
-                android:id="@+id/radParent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="false"
-                android:text="Parent" />
         </RadioGroup>
 
         <Button
