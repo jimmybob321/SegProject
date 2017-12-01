@@ -134,6 +134,7 @@ public class LoginPage extends AppCompatActivity {
             username = (EditText) findViewById(R.id.txtUser);
             password = (EditText) findViewById(R.id.txtPassword);
             String user = username.getText().toString().trim();
+<<<<<<< HEAD
             String pass = password.getText().toString().trim();
 
             if (user.equals("")) {
@@ -144,6 +145,9 @@ public class LoginPage extends AppCompatActivity {
                 return;
             }
 
+=======
+            String pass = username.getText().toString().trim();
+>>>>>>> 5ed5efe2f6acfd7f37ba9deeb254f47a17bfebfd
             RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
             String type;
             if (radChild.isChecked())
