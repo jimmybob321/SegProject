@@ -58,13 +58,15 @@ public class claim_task extends AppCompatActivity {
         String NewDATE = new_Date.getText().toString().trim();
         int NewREWARD = Integer.parseInt(new_Reward.getText().toString().trim());
 
-        databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
-
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T.getTitle());
 
         Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),USER.get_name());
+        databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+
+        
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T2.getTitle());
+
         dR.setValue(T2);
-        dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T2.getTitle());
+        dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
         dR.setValue(null);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
