@@ -15,7 +15,7 @@ public class parent_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_profile);
-        
+
         USER = (Profile) getIntent().getSerializableExtra("Profile");
     }
 
