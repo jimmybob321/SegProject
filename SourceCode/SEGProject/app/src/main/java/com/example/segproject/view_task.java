@@ -44,7 +44,7 @@ public class view_task extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_task);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
-        T = new Task("",1,"",1);
+        T = new Task("",1,"",1,"unassigned");
         //TODO need to be passed a task
         //blank to not cause errors we still need to figure out how to pass an object to this page
         //T = (Task) getIntent().getSerializableExtra("Task");
@@ -69,22 +69,27 @@ public class view_task extends AppCompatActivity {
         finish();
     }
     public void declineTask(Task delTask){
-        USER.removeTask(delTask);
+        //USER.removeTask(delTask);
         T = delTask;
         //TODO add to unassigned user once database is fixed
+        String assign = T.getUser();
 
-        databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child("UNASSIGN");
-        dR.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+        Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),"unassigned");
+        dR.setValue(T2);
+        /*dR.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snap) {
-                Profile unassign = snap.getValue(Profile.class);
-                unassign.addTask(T);
+                //Profile unassign = snap.getValue(Profile.class);
+               // unassign.addTask(T);
+
+                dR.setValue(snap.child(T.getTitle()).getValue(Task.class).setUser("unassigned"));
 
             }
 
             @Override public void onCancelled(DatabaseError error) { }
-        });
+        });*/
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
