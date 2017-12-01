@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class home_page extends AppCompatActivity {
-    boolean isParent;
     Profile USER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class home_page extends AppCompatActivity {
 
     }
     public void ViewProfileClick(View view){
-        if(isParent) {
+        if(USER.isParent()) {
             Intent intent = new Intent(getApplicationContext(),parent_profile.class);
             intent.putExtra("Profile", USER);
             startActivityForResult(intent, 0);

@@ -31,7 +31,8 @@ public class create_task extends AppCompatActivity {
         TaskUser = (EditText) findViewById(R.id.txtAssignUser);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
 
-
+        if (!USER.isParent())
+            TaskUser.setInputType(0); //Disables TaskUser if user is not a parent.
 
     }
     public void CreateTaskClick(View view){

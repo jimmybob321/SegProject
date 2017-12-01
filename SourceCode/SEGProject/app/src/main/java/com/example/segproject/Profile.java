@@ -71,6 +71,11 @@ public class Profile implements Serializable{
         this._img = _img;
     }
 
+    public boolean isParent(){
+        return _type.equals("Parent");
+
+    }
+
     public void removeTask(Task TaskToRemove){
 
         Tasks.remove(TaskToRemove);
