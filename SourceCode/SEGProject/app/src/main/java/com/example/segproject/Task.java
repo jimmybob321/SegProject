@@ -8,6 +8,8 @@ public class Task implements Serializable{
     private int Priority;
     private String User;
 
+    public Task(){}
+
     public Task(String Title, int Reward, String Date, int Priority, String User){
         this.Title = Title;
         this.Reward = Reward;
