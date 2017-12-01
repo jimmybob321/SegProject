@@ -34,5 +34,6 @@ public class child_profile extends AppCompatActivity {
         score.setText(Integer.toString(USER.get_score()));
         avatar.setImageDrawable(Drawable.createFromPath(USER.get_img()));
     }
+        //TODO add display of tasks
 
 }

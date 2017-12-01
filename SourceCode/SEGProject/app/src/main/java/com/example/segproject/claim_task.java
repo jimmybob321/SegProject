@@ -69,6 +69,7 @@ public class claim_task extends AppCompatActivity {
             @Override public void onCancelled(DatabaseError error) { }
         });}
         catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
             //toast asking for proper name
         }
         Intent returnIntent = new Intent();

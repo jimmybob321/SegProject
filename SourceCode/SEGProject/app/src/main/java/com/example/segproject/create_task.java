@@ -9,6 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
@@ -20,10 +27,11 @@ public class create_task extends AppCompatActivity {
     EditText TaskReward;
     EditText TaskUser;
     Profile USER;
+    Profile CHILD;
     DatePicker datePicker;
     Calendar calendar;
     private int year, month, day;
-
+    DatabaseReference databaseProfiles;
     Task T;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +108,24 @@ public class create_task extends AppCompatActivity {
     }
     private void AssignNewTask(String name, String Date, int priority, int reward, String user) {
         T = new Task(name, reward, Date, priority);
-        //TODO find child user once database is fixed
-        //get user
-        //USERgiven.addTask(T);
+        
+        try{
+            databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
+            dR.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snap) {
+                    Profile CHILD = snap.getValue(Profile.class);
+                    CHILD.addTask(T);
+
+                }
+
+                @Override public void onCancelled(DatabaseError error) { }
+            });}
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
+            //toast asking for proper name
+        }
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
