@@ -21,7 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
-
+import java.security.MessageDigest;
+import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginPage extends AppCompatActivity {
     EditText username;
@@ -87,11 +89,12 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
-    public void btnLoginClick(View view){
+    public void btnLoginClick(View view)throws NoSuchAlgorithmException{
         try {
             username = (EditText) findViewById(R.id.txtUser);
             password = (EditText) findViewById(R.id.txtPassword);
             String user = username.getText().toString().trim();
+            pass = hash(password.getText().toString().trim());
             //TODO james implement this login method
             Profile USER = new Profile("", "", 1, "", null);// dummy profile
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
@@ -100,7 +103,7 @@ public class LoginPage extends AppCompatActivity {
                 public void onDataChange(DataSnapshot snap) {
                     Profile USER = snap.getValue(Profile.class);
                     String user = username.getText().toString().trim();
-                    String pass = password.getText().toString().trim();
+
                     try{
                         if(USER.get_name() == null)
                             Toast.makeText(getApplicationContext(), "Login Failed. User does not exist", Toast.LENGTH_SHORT).show();
@@ -135,7 +138,7 @@ public class LoginPage extends AppCompatActivity {
             password = (EditText) findViewById(R.id.txtPassword);
             String user = username.getText().toString().trim();
 
-            String pass = password.getText().toString().trim();
+            pass = password.getText().toString().trim();
 
             if (user.equals("")) {
                 Toast.makeText(getApplicationContext(), "Enter a Username", Toast.LENGTH_SHORT).show();
@@ -144,7 +147,7 @@ public class LoginPage extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Enter a Password", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            pass = hash(password.getText().toString().trim());
             RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
             String type;
             if (radChild.isChecked())
@@ -160,6 +163,17 @@ public class LoginPage extends AppCompatActivity {
         }
 
 
+    }
+
+    private static String hash(String str)throws NoSuchAlgorithmException{
+        String salt ="hr4hg83f7g47fg847gf8hrehwf8cwge8fg";
+        str = str+salt;// salt the password
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");//use hashing algorithm SHA 256
+        byte[] b = str.getBytes();//converts string to byte array
+        b = digest.digest(b);//hashes byte array
+        BigInteger num = new BigInteger(1,b);//converts bytearray into big integer
+        String hashed = num.toString(16);//converts BigInteger to string of hexadecimal
+        return(hashed);
     }
 
 
