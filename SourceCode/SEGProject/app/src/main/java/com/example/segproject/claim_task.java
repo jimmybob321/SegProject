@@ -62,7 +62,7 @@ public class claim_task extends AppCompatActivity {
         Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),USER.get_name());
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
 
-        
+
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T2.getTitle());
 
         dR.setValue(T2);
@@ -82,8 +82,9 @@ public class claim_task extends AppCompatActivity {
         try{
 
             databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
-            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(childName).child(T.getTitle());
             Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),childName);
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(childName).child(T2.getTitle());
+
             dR.setValue(T2);
             dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
             dR.setValue(null);
