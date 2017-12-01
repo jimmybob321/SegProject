@@ -47,8 +47,11 @@ public class claim_task extends AppCompatActivity {
     }
     public void ClaimClick(View view){
 
-        USER.addTask(T);
-        
+        databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+        Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),USER.get_name());
+        dR.setValue(T2);
+
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
@@ -58,18 +61,11 @@ public class claim_task extends AppCompatActivity {
         Child = (EditText) findViewById(R.id.txtChild);
         String child = Child.getText().toString().trim();
         try{
-        databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(child);
-        dR.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snap) {
-                Profile CHILD = snap.getValue(Profile.class);
-                CHILD.addTask(T);
-
-            }
-
-            @Override public void onCancelled(DatabaseError error) { }
-        });}
+            databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+            Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),"unassigned");
+            dR.setValue(T2);
+        }
         catch (Exception e){
             Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
             //toast asking for proper name
