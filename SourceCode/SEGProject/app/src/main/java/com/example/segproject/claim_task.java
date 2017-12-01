@@ -60,7 +60,7 @@ public class claim_task extends AppCompatActivity {
 
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
 
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T.getTitle());
 
         Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),USER.get_name());
         dR.setValue(T2);
