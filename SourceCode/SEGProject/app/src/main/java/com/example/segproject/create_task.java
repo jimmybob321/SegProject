@@ -108,7 +108,7 @@ public class create_task extends AppCompatActivity {
     }
     private void AssignNewTask(String name, String Date, int priority, int reward, String user) {
         T = new Task(name, reward, Date, priority);
-        
+
         try{
             databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);

@@ -41,6 +41,7 @@ public class claim_task extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
+        //TODO need to be passed a task
         //T = (Task) getIntent().getSerializableExtra("Task"); will uncomment out when we get the display working
         T = new Task("",1,"",1);//blank to not cause errors we still need to figure out how to pass an object to this page
     }
