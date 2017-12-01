@@ -29,7 +29,9 @@ public class child_profile extends AppCompatActivity {
         name = (TextView) findViewById(R.id.txtName);
         score = (TextView) findViewById(R.id.txtScore);
         name.setText(USER.get_name());
-        score.setText(USER.get_score());
+        int a = USER.get_score();
+
+        score.setText(Integer.toString(USER.get_score()));
         avatar.setImageDrawable(Drawable.createFromPath(USER.get_img()));
     }
 
