@@ -6,12 +6,14 @@ public class Task implements Serializable{
     private int Reward;
     private String Date;
     private int Priority;
+    private String User;
 
-    public Task(String Title, int Reward, String Date, int Priority){
+    public Task(String Title, int Reward, String Date, int Priority, String User){
         this.Title = Title;
         this.Reward = Reward;
         this.Date = Date;
         this.Priority = Priority;
+        this.User = User;
     }
     public String getTitle(){
         return this.Title;
@@ -36,6 +38,14 @@ public class Task implements Serializable{
     }
     public void setPriority(int newPriority){
         this.Priority = newPriority;
+    }
+
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
     }
 }
 

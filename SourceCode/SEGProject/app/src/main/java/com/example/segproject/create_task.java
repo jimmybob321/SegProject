@@ -32,6 +32,7 @@ public class create_task extends AppCompatActivity {
     Calendar calendar;
     private int year, month, day;
     DatabaseReference databaseProfiles;
+    DatabaseReference databaseTasks;
     Task T;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,16 +101,18 @@ public class create_task extends AppCompatActivity {
     }
 
     private void createTask(String name, String Date, int priority, int reward){
-        T = new Task(name,reward,Date,priority);
-        USER.addTask(T);
+        databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
+        T = new Task(name,reward,Date,priority,"unassigned");
+        databaseTasks.child(name).setValue(T);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
     }
     private void AssignNewTask(String name, String Date, int priority, int reward, String user) {
-        T = new Task(name, reward, Date, priority);
-
-        try{
+        databaseTasks = FirebaseDatabase.getInstance().getReference("tasks");
+        T = new Task(name, reward, Date, priority,user);
+        databaseTasks.child(name).setValue(T);
+        /*try{
             databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
             dR.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -125,7 +128,7 @@ public class create_task extends AppCompatActivity {
         catch (Exception e){
             Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
             //toast asking for proper name
-        }
+        }*/
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
