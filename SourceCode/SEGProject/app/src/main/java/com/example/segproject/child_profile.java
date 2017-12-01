@@ -1,5 +1,6 @@
 package com.example.segproject;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -57,6 +58,10 @@ public class child_profile extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Task task = tasks.get(i);
+                Intent intent = new Intent(getApplicationContext(), view_task.class);
+                intent.putExtra("Profile", USER);
+                intent.putExtra("Task",task);
+                startActivityForResult(intent, 0);
                 return true;
             }
         });
