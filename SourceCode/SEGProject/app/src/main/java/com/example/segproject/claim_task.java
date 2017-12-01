@@ -51,7 +51,7 @@ public class claim_task extends AppCompatActivity {
         //T = new Task("",1,"",1,"");//blank to not cause errors we still need to figure out how to pass an object to this page
         new_Name.setText(T.getTitle());
         new_Date.setText(T.getDate());
-        new_Reward.setText(T.getReward());
+        new_Reward.setText(Integer.toString(T.getReward()));
     }
     public void ClaimClick(View view){
         String NewNAME = new_Name.getText().toString().trim();
