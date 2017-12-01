@@ -30,7 +30,7 @@ public class LoginPage extends AppCompatActivity {
     List<Profile> profiles;
     String user;
     String pass;
-    String image;
+    String drawableName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,7 +41,7 @@ public class LoginPage extends AppCompatActivity {
         password = (EditText) findViewById(R.id.txtPassword);
         databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
         profiles = new ArrayList<>();
-
+        drawableName = "avatar_blue";
 
     }
 
@@ -58,36 +58,27 @@ public class LoginPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_CANCELED) return;
         ImageView avatarImage = (ImageView) findViewById(R.id.imbtnAvatar);
-        String drawableName = "avatar_blue";
-
         switch (data.getIntExtra("imageID",R.id.imBlue)){
             case R.id.imBlue:
                 drawableName="avatar_blue";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_blue).toString();
                 break;
             case R.id.imGray:
                 drawableName="avatar_gray";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_gray).toString();
                 break;
             case R.id.imGreen:
                 drawableName="avatar_green";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_green).toString();
                 break;
             case R.id.imOrange:
                 drawableName="avatar_orange";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_orange).toString();
                 break;
             case R.id.imPink:
                 drawableName="avatar_pink";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_pink).toString();
                 break;
             case R.id.imRed:
                 drawableName="avatar_red";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_red).toString();
                 break;
             default:
                 drawableName="avatar_blue";
-                image = new StringBuilder("drawable://").append(R.drawable.avatar_blue).toString();
                 break;
         }
         int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
@@ -109,33 +100,32 @@ public class LoginPage extends AppCompatActivity {
                 public void onDataChange(DataSnapshot snap) {
                     Profile USER = snap.getValue(Profile.class);
                     String user = username.getText().toString().trim();
-                    String pass = username.getText().toString().trim();
-                    if (USER != null) { //Debug.
-                        if (USER.get_name().equals(user) && USER.get_password().equals(pass)) {
+                    String pass = password.getText().toString().trim();
+                    try{
+                        if(USER.get_name() == null)
+                            Toast.makeText(getApplicationContext(), "Login Failed. User does not exist", Toast.LENGTH_SHORT).show();
+                        else if (USER.get_name().equals(user) && USER.get_password().equals(pass)) {
                             //TOAST HERE
-                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(), home_page.class);
                             intent.putExtra("Profile", USER);
                             startActivityForResult(intent, 0);
                         } else {
                             //TOAST HERE
-                            Toast.makeText(getApplicationContext(), "Failed to Login.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Failed to Login.", Toast.LENGTH_SHORT).show();
                         }
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Failed to Login. User does not exist.", Toast.LENGTH_LONG).show();
-                        // TODO Add a break here once database is setup
+                    }catch(NullPointerException e){
+                        Toast.makeText(getApplicationContext(), "Failed to Login. User does not exist.", Toast.LENGTH_SHORT).show();
+                    }catch(Exception e){
+                        Toast.makeText(getApplicationContext(), "Failed to Login." + e.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
                 public void onCancelled(DatabaseError error) {
                 }
             });
-
-            Intent intent = new Intent(getApplicationContext(), home_page.class);
-            intent.putExtra("Profile", USER);
-            startActivityForResult(intent, 0);
-        }catch(Exception e) {
+       }catch(Exception e) {
             Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -144,8 +134,15 @@ public class LoginPage extends AppCompatActivity {
             username = (EditText) findViewById(R.id.txtUser);
             password = (EditText) findViewById(R.id.txtPassword);
             String user = username.getText().toString().trim();
-            String pass = username.getText().toString().trim();
+            String pass = password.getText().toString().trim();
 
+            if (user.equals("")) {
+                Toast.makeText(getApplicationContext(), "Enter a Username", Toast.LENGTH_SHORT).show();
+                return;
+            }else if (pass.equals("")) {
+                Toast.makeText(getApplicationContext(), "Enter a Password", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
             String type;
@@ -153,12 +150,12 @@ public class LoginPage extends AppCompatActivity {
                 type = "Child";
             else
                 type = "Parent";
-            Profile profile = new Profile(user, pass, 0, type, image);
+            Profile profile = new Profile(user, pass, 0, type, drawableName);
             databaseProfiles.child(user).setValue(profile);
-            Toast.makeText(getApplicationContext(), "Profile Created", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Profile Created", Toast.LENGTH_SHORT).show();
         }
         catch(Exception e){
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
         }
 
 

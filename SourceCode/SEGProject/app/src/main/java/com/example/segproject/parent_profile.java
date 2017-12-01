@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -26,9 +27,11 @@ public class parent_profile extends AppCompatActivity {
         avatar = (ImageView) findViewById(R.id.imgAvatar);
         name = (TextView) findViewById(R.id.txtName);
         score = (TextView) findViewById(R.id.txtScore);
-        name.setText(USER.get_name());
-        score.setText(USER.get_score());
-        avatar.setImageDrawable(Drawable.createFromPath(USER.get_img()));
+        name.setText(new StringBuilder("Name: ").append(USER.get_name()));
+        score.setText(new StringBuilder("Score: ").append(USER.get_score()));
+        int resID = getResources().getIdentifier(USER.get_img(), "drawable", getPackageName());
+        avatar.setImageResource(resID);
+
     }
 
     public void ReturnClick(View view){

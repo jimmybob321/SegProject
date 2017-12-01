@@ -28,11 +28,11 @@ public class child_profile extends AppCompatActivity {
         avatar = (ImageView) findViewById(R.id.imgAvatar);
         name = (TextView) findViewById(R.id.txtName);
         score = (TextView) findViewById(R.id.txtScore);
-        name.setText(USER.get_name());
-        int a = USER.get_score();
 
-        score.setText(Integer.toString(USER.get_score()));
-        avatar.setImageDrawable(Drawable.createFromPath(USER.get_img()));
+        name.setText(new StringBuilder("Name: ").append(USER.get_name()));
+        score.setText(new StringBuilder("Score: ").append(USER.get_score()));
+        int resID = getResources().getIdentifier(USER.get_img(), "drawable", getPackageName());
+        avatar.setImageResource(resID);
     }
         //TODO add display of tasks
 
