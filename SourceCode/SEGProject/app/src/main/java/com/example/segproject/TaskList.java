@@ -33,7 +33,7 @@ public class TaskList extends ArrayAdapter<Task> {
 
         Task task = tasks.get(position);
         txtName.setText(new StringBuilder("Name: ").append(task.getTitle()));
-        txtDate.setText(new StringBuilder("Due Date:").append(task.getDate()));
+        txtDate.setText(new StringBuilder("Due Date: ").append(task.getDate()));
         txtReward.setText(new StringBuilder("Reward: ").append(task.getReward()));
         return listViewItem;
     }

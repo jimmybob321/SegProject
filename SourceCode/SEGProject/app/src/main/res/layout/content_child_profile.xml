@@ -27,7 +27,7 @@
             android:id="@+id/imgAvatar"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            app:srcCompat="@drawable/avatar_blue" />
 
         <TextView
             android:id="@+id/txtScore"

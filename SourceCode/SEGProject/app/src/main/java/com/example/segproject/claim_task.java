@@ -33,6 +33,7 @@ public class claim_task extends AppCompatActivity {
     EditText new_Name;
     EditText new_Date;
     EditText new_Reward;
+    Button assign, saveChanges;
     DatabaseReference databaseProfiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +41,12 @@ public class claim_task extends AppCompatActivity {
         setContentView(R.layout.activity_claim_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Child = findViewById(R.id.txtChild);
         new_Name = (EditText) findViewById(R.id.newName);
         new_Date = (EditText) findViewById(R.id.newDate);
         new_Reward = (EditText) findViewById(R.id.newReward);
+        assign = findViewById(R.id.btnAssign);
+        saveChanges = findViewById(R.id.btnSaveChanges);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
@@ -52,7 +56,16 @@ public class claim_task extends AppCompatActivity {
         new_Name.setText(T.getTitle());
         new_Date.setText(T.getDate());
         new_Reward.setText(Integer.toString(T.getReward()));
-        if (USER.isParent()){
+        if (!USER.isParent()){
+            new_Name.setInputType(0);
+            new_Date.setInputType(0);
+            new_Reward.setInputType(0);
+            Child.setInputType(0);//disables input if user is not a parent
+            Child.setVisibility(View.INVISIBLE);
+            assign.setClickable(false);
+            assign.setVisibility(View.INVISIBLE);
+            saveChanges.setVisibility(View.INVISIBLE);
+
 
         }
     }
@@ -78,13 +91,27 @@ public class claim_task extends AppCompatActivity {
     public void AssignClick(View view){
         //TODO add toast for exception
         Child = (EditText) findViewById(R.id.txtChild);
-        String childName = Child.getText().toString().trim();
+        final String childName = Child.getText().toString().trim();
         String NewNAME = new_Name.getText().toString().trim();
         String NewDATE = new_Date.getText().toString().trim();
         int NewREWARD = Integer.parseInt(new_Reward.getText().toString().trim());
         try{
 
-            databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
+            databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
+            databaseProfiles.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.hasChild(childName) || childName.equals("")){
+                        Toast.makeText(getApplicationContext(), "Child does not exist", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
             Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),childName);
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(childName).child(T2.getTitle());
 
@@ -96,6 +123,24 @@ public class claim_task extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
             //toast asking for proper name
         }
+        Intent returnIntent = new Intent();
+        setResult(RESULT_OK, returnIntent);
+        finish();
+    }
+
+    public void saveChanges(View view){
+        String NewNAME = new_Name.getText().toString().trim();
+        String NewDATE = new_Date.getText().toString().trim();
+        int NewREWARD = Integer.parseInt(new_Reward.getText().toString().trim());
+
+        Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),"unassigned");
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
+        dR.setValue(null);
+        dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T2.getTitle());
+        dR.setValue(T2);
+
+        Toast.makeText(getApplicationContext(), "Saved Changes", Toast.LENGTH_SHORT).show();
+
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();

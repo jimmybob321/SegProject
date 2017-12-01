@@ -40,17 +40,18 @@ public class create_task extends AppCompatActivity {
         setContentView(R.layout.activity_create_task);
         TaskName = (EditText) findViewById(R.id.txtName);
         TaskDate = (EditText) findViewById(R.id.txtDate);
-        TaskPriority = (EditText) findViewById(R.id.txtReward);
-        TaskReward = (EditText) findViewById(R.id.txtPriority);
+        TaskPriority = (EditText) findViewById(R.id.txtPriority);
+        TaskReward = (EditText) findViewById(R.id.txtReward);
         TaskUser = (EditText) findViewById(R.id.txtAssignUser);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
 
         TaskDate.setInputType(0);
 
 
-        if (!USER.isParent())
+        if (!USER.isParent()) {
             TaskUser.setInputType(0); //Disables TaskUser if user is not a parent.
-
+            TaskUser.setVisibility(View.INVISIBLE);
+        }
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -92,6 +93,10 @@ public class create_task extends AppCompatActivity {
 
 
     public void CreateTaskClick(View view){
+        if (TaskName.getText().toString().equals("")||TaskPriority.getText().toString().equals("")||TaskReward.getText().toString().equals("")){
+            Toast.makeText(this, "Empty Field, please fill all fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(!TaskUser.getText().toString().trim().equals("")) {
             createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()), TaskUser.getText().toString().trim());
         }
