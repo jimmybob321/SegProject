@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class choose_photo extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class choose_photo extends AppCompatActivity {
     }
 
     public void onClickSelectImage(View view){
+        Toast.makeText(getApplicationContext(), "Avatar Updated", Toast.LENGTH_LONG).show();
         Intent returnIntent = new Intent();
         ImageView selectedImage = (ImageView) view;
         returnIntent.putExtra("imageID", selectedImage.getId());

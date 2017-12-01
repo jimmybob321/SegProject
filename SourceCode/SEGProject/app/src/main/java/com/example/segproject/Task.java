@@ -1,7 +1,7 @@
 package com.example.segproject;
+import java.io.Serializable;
 
-
-public class Task {
+public class Task implements Serializable{
     private String Title;
     private int Reward;
     private String Date;

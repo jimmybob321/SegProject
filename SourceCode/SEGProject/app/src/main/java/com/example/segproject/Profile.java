@@ -2,6 +2,7 @@ package com.example.segproject;
 import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  * Created by jamesmorrill on 2017-11-30.
  */
@@ -13,6 +14,8 @@ public class Profile implements Serializable{
     private int _score;
     private String _type;
     private Drawable _img;
+    private ArrayList<Task> Tasks;
+
     public Profile(){
 
     }
@@ -23,6 +26,9 @@ public class Profile implements Serializable{
         _score = score;
         _type = type;
         _img = img;
+        Tasks = new ArrayList<>();
+
+
     }
 
     public int get_score() {
@@ -64,12 +70,16 @@ public class Profile implements Serializable{
     public void set_img(Drawable _img) {
         this._img = _img;
     }
-    //TODO add implementation for below classes once database is fixed
+
     public void removeTask(Task TaskToRemove){
-        //remove task from list
+
+        Tasks.remove(TaskToRemove);
+
+
+
     }
     public void addTask(Task TaskToAdd){
-        //add task to list
-    }
+        Tasks.add(TaskToAdd);
 
+    }
 }

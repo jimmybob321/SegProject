@@ -51,6 +51,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_CANCELED) return;
@@ -83,7 +85,6 @@ public class LoginPage extends AppCompatActivity {
         int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
         avatarImage.setImageResource(resID);
 
-        Toast.makeText(getApplicationContext(), "Avatar Updated", Toast.LENGTH_LONG).show();
 
     }
 
@@ -103,12 +104,16 @@ public class LoginPage extends AppCompatActivity {
                if(USER.get_name().equals(user) && USER.get_password()==pass){
 
                    //TOAST HERE
+                   Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
+
                    Intent intent = new Intent(getApplicationContext(),home_page.class);
                    intent.putExtra("Profile", USER);
                    startActivityForResult (intent,0);
                }
                else{
                    //TOAST HERE
+                   Toast.makeText(getApplicationContext(), "Failed to Login.", Toast.LENGTH_LONG).show();
+
                }
 
             }
@@ -121,7 +126,6 @@ public class LoginPage extends AppCompatActivity {
         startActivityForResult (intent,0);
 
     }
-
     public void btnCreateAccountClick(View view) {
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
@@ -138,12 +142,7 @@ public class LoginPage extends AppCompatActivity {
             type = "Child";
         else
             type = "Parent";
-
-
-        //creating a Product Object
         Profile profile = new Profile(user, pass,0,type, image);
-
-        //Saving the Product
         databaseProfiles.child(user).setValue(profile);
 
 
