@@ -43,6 +43,7 @@ public class parent_profile extends AppCompatActivity {
         tasks = new ArrayList<>();
         children = new ArrayList<>();
         dRTasks = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name());
+        dRTasks.orderByChild("priority");
         dRChildren = FirebaseDatabase.getInstance().getReference("profiles");
 
         avatar = (ImageView) findViewById(R.id.imgAvatar);
@@ -111,13 +112,4 @@ public class parent_profile extends AppCompatActivity {
             }
         });
     }
-
-    public void ReturnClick(View view){
-        Intent returnIntent = new Intent();
-        setResult(RESULT_OK, returnIntent);
-        finish();
-
-    }
-    //TODO Need to display child profiles and tasks
-
 }
