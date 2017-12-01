@@ -13,13 +13,13 @@ public class Profile implements Serializable{
     private String _password;
     private int _score;
     private String _type;
-    private Drawable _img;
+    private String _img;
     private ArrayList<Task> Tasks;
 
     public Profile(){
 
     }
-    public Profile( String name, String password, int score, String type, Drawable img){
+    public Profile( String name, String password, int score, String type, String img){
 
         _name = name;
         _password = password;
@@ -63,11 +63,11 @@ public class Profile implements Serializable{
         this._type = _type;
     }
 
-    public Drawable get_img() {
+    public String get_img() {
         return _img;
     }
 
-    public void set_img(Drawable _img) {
+    public void set_img(String _img) {
         this._img = _img;
     }
 

@@ -1,5 +1,6 @@
 package com.example.segproject;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -29,7 +30,7 @@ public class child_profile extends AppCompatActivity {
         score = (TextView) findViewById(R.id.txtScore);
         name.setText(USER.get_name());
         score.setText(USER.get_score());
-        avatar.setImageDrawable(USER.get_img());
+        avatar.setImageDrawable(Drawable.createFromPath(USER.get_img()));
     }
 
 }

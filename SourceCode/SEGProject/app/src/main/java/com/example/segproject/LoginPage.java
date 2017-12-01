@@ -30,6 +30,7 @@ public class LoginPage extends AppCompatActivity {
     List<Profile> profiles;
     String user;
     String pass;
+    String image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -62,24 +63,31 @@ public class LoginPage extends AppCompatActivity {
         switch (data.getIntExtra("imageID",R.id.imBlue)){
             case R.id.imBlue:
                 drawableName="avatar_blue";
+                image = "drawable://"+R.drawable.avatar_blue;
                 break;
             case R.id.imGray:
                 drawableName="avatar_gray";
+                image = "drawable://"+R.drawable.avatar_gray;
                 break;
             case R.id.imGreen:
                 drawableName="avatar_green";
+                image = "drawable://"+R.drawable.avatar_green;
                 break;
             case R.id.imOrange:
                 drawableName="avatar_orange";
+                image = "drawable://"+R.drawable.avatar_orange;
                 break;
             case R.id.imPink:
                 drawableName="avatar_pink";
+                image = "drawable://"+R.drawable.avatar_pink;
                 break;
             case R.id.imRed:
                 drawableName="avatar_red";
+                image = "drawable://"+R.drawable.avatar_red;
                 break;
             default:
                 drawableName="avatar_blue";
+                image = "drawable://"+R.drawable.avatar_blue;
                 break;
         }
         int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
@@ -127,23 +135,26 @@ public class LoginPage extends AppCompatActivity {
 
     }
     public void btnCreateAccountClick(View view) {
-        username = (EditText) findViewById(R.id.txtUser);
-        password = (EditText) findViewById(R.id.txtPassword);
-        String user = username.getText().toString().trim();
-        String pass = username.getText().toString().trim();
-
-        ImageView avatarImage = (ImageView) findViewById(R.id.imbtnAvatar);
-        Drawable image = avatarImage.getDrawable();
+        try { //TODO implement a proper toast for failed creation
+            username = (EditText) findViewById(R.id.txtUser);
+            password = (EditText) findViewById(R.id.txtPassword);
+            String user = username.getText().toString().trim();
+            String pass = username.getText().toString().trim();
 
 
-        RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
-        String type;
-        if (radChild.isChecked())
-            type = "Child";
-        else
-            type = "Parent";
-        Profile profile = new Profile(user, pass,0,type, image);
-        databaseProfiles.child(user).setValue(profile);
+            RadioButton radChild = (RadioButton) findViewById(R.id.radChild);
+            String type;
+            if (radChild.isChecked())
+                type = "Child";
+            else
+                type = "Parent";
+            Profile profile = new Profile(user, pass, 0, type, image);
+            databaseProfiles.child(user).setValue(profile);
+            Toast.makeText(getApplicationContext(), "Profile Created", Toast.LENGTH_LONG).show();
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+        }
 
 
     }
