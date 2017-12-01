@@ -121,7 +121,6 @@ public class LoginPage extends AppCompatActivity {
         startActivityForResult (intent,0);
 
     }
-
     public void btnCreateAccountClick(View view) {
         username = (EditText) findViewById(R.id.txtUser);
         password = (EditText) findViewById(R.id.txtPassword);
@@ -138,12 +137,7 @@ public class LoginPage extends AppCompatActivity {
             type = "Child";
         else
             type = "Parent";
-
-
-        //creating a Product Object
         Profile profile = new Profile(user, pass,0,type, image);
-
-        //Saving the Product
         databaseProfiles.child(user).setValue(profile);
 
 
