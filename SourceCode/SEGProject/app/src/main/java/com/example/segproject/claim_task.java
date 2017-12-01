@@ -43,14 +43,14 @@ public class claim_task extends AppCompatActivity {
         USER = (Profile) getIntent().getSerializableExtra("Profile");
         T = new Task("",1,"",1);//blank to not cause errors we still need to figure out how to pass an object to this page
     }
-    public void ClaimClick(){
+    public void ClaimClick(View view){
 
         USER.addTask(T);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
     }
-    public void AssignClick(){
+    public void AssignClick(View view){
         //TODO add toast for exception
         Child = (EditText) findViewById(R.id.txtChild);
         String child = Child.getText().toString().trim();
@@ -70,8 +70,6 @@ public class claim_task extends AppCompatActivity {
         catch (Exception e){
             //toast asking for proper name
         }
-
-
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
