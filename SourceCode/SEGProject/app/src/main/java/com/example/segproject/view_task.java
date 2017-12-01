@@ -45,7 +45,9 @@ public class view_task extends AppCompatActivity {
         setContentView(R.layout.activity_view_task);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
         T = new Task("",1,"",1);
+
         //blank to not cause errors we still need to figure out how to pass an object to this page
+        //T = (Task) getIntent().getSerializableExtra("Task");
     }
     public void CompleteClick(View view){
         completeTask(T);
