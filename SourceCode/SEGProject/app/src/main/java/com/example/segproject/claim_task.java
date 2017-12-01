@@ -30,6 +30,9 @@ public class claim_task extends AppCompatActivity {
     Profile USER;
     Task T;
     EditText Child;
+    EditText new_Name;
+    EditText new_Date;
+    EditText new_Reward;
     DatabaseReference databaseProfiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +40,32 @@ public class claim_task extends AppCompatActivity {
         setContentView(R.layout.activity_claim_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        new_Name = (EditText) findViewById(R.id.newName);
+        new_Date = (EditText) findViewById(R.id.newDate);
+        new_Reward = (EditText) findViewById(R.id.newReward);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         USER = (Profile) getIntent().getSerializableExtra("Profile");
 
         T = (Task) getIntent().getSerializableExtra("Task"); //will uncomment out when we get the display working
         //T = new Task("",1,"",1,"");//blank to not cause errors we still need to figure out how to pass an object to this page
+        new_Name.setText(T.getTitle());
+        new_Date.setText(T.getDate());
+        new_Reward.setText(T.getReward());
     }
     public void ClaimClick(View view){
+        String NewNAME = new_Name.getText().toString().trim();
+        String NewDATE = new_Date.getText().toString().trim();
+        int NewREWARD = Integer.parseInt(new_Reward.getText().toString().trim());
 
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
-        Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),USER.get_name());
-        dR.setValue(T2);
 
+        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(T.getTitle());
+
+        Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),USER.get_name());
+        dR.setValue(T2);
+        dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
+        dR.setValue(null);
         Intent returnIntent = new Intent();
         setResult(RESULT_OK, returnIntent);
         finish();
@@ -60,11 +74,17 @@ public class claim_task extends AppCompatActivity {
         //TODO add toast for exception
         Child = (EditText) findViewById(R.id.txtChild);
         String childName = Child.getText().toString().trim();
+        String NewNAME = new_Name.getText().toString().trim();
+        String NewDATE = new_Date.getText().toString().trim();
+        int NewREWARD = Integer.parseInt(new_Reward.getText().toString().trim());
         try{
+
             databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
             DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(childName).child(T.getTitle());
-            Task T2= new Task(T.getTitle(),T.getReward(),T.getDate(),T.getPriority(),"unassigned");
+            Task T2= new Task(NewNAME,NewREWARD,NewDATE,T.getPriority(),childName);
             dR.setValue(T2);
+            dR = FirebaseDatabase.getInstance().getReference("tasks").child("unassigned").child(T.getTitle());
+            dR.setValue(null);
         }
         catch (Exception e){
             Toast.makeText(getApplicationContext(), "Invalid User", Toast.LENGTH_LONG).show();
