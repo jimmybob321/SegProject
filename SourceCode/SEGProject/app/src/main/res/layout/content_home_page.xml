@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="CreateTaskClick"
-                android:text="Creat Task" />
+                android:text="Create Task" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

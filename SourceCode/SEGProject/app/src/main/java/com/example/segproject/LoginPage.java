@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +42,46 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    public void onClickAvatar(View view){
+        Intent intent = new Intent(getApplicationContext(),choose_photo.class);
+        startActivityForResult (intent,0);
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_CANCELED) return;
+        ImageView avatarImage = (ImageView) findViewById(R.id.imbtnAvatar);
+        String drawableName = "avatar_blue";
+
+        switch (data.getIntExtra("imageID",R.id.imBlue)){
+            case R.id.imBlue:
+                drawableName="avatar_blue";
+                break;
+            case R.id.imGray:
+                drawableName="avatar_gray";
+                break;
+            case R.id.imGreen:
+                drawableName="avatar_green";
+                break;
+            case R.id.imOrange:
+                drawableName="avatar_orange";
+                break;
+            case R.id.imPink:
+                drawableName="avatar_pink";
+                break;
+            case R.id.imRed:
+                drawableName="avatar_red";
+                break;
+            default:
+                drawableName="avatar_blue";
+                break;
+        }
+        int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
+        avatarImage.setImageResource(resID);
+
+    }
 
     public void btnLoginClick(View view){
         username = (EditText) findViewById(R.id.txtUser);

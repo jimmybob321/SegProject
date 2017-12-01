@@ -26,15 +26,6 @@
                 android:value="com.example.segproject.LoginPage" />
         </activity>
         <activity
-            android:name=".create_profile"
-            android:label="@string/title_activity_create_profile"
-            android:parentActivityName=".LoginPage"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.segproject.LoginPage" />
-        </activity>
-        <activity
             android:name=".create_task"
             android:label="@string/title_activity_create_task"
             android:parentActivityName=".home_page"
@@ -82,11 +73,11 @@
         <activity
             android:name=".choose_photo"
             android:label="@string/title_activity_choose_photo"
-            android:parentActivityName=".create_profile"
+            android:parentActivityName=".LoginPage"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.segproject.create_profile" />
+                android:value="com.example.segproject.LoginPage" />
         </activity>
     </application>
 

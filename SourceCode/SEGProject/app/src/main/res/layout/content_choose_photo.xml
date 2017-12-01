@@ -33,7 +33,7 @@
             android:rowCount="2">
 
             <ImageView
-                android:id="@+id/imageView0"
+                android:id="@+id/imBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -47,7 +47,7 @@
                 app:srcCompat="@drawable/avatar_blue" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/imGreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -60,7 +60,7 @@
                 app:srcCompat="@drawable/avatar_green" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imPink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
@@ -74,7 +74,7 @@
                 app:srcCompat="@drawable/avatar_pink" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imRed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -87,7 +87,7 @@
                 app:srcCompat="@drawable/avatar_red" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imGray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -101,7 +101,7 @@
                 app:srcCompat="@drawable/avatar_gray" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imOrange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
