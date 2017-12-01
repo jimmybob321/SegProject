@@ -63,31 +63,31 @@ public class LoginPage extends AppCompatActivity {
         switch (data.getIntExtra("imageID",R.id.imBlue)){
             case R.id.imBlue:
                 drawableName="avatar_blue";
-                image = "drawable://"+R.drawable.avatar_blue;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_blue).toString();
                 break;
             case R.id.imGray:
                 drawableName="avatar_gray";
-                image = "drawable://"+R.drawable.avatar_gray;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_gray).toString();
                 break;
             case R.id.imGreen:
                 drawableName="avatar_green";
-                image = "drawable://"+R.drawable.avatar_green;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_green).toString();
                 break;
             case R.id.imOrange:
                 drawableName="avatar_orange";
-                image = "drawable://"+R.drawable.avatar_orange;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_orange).toString();
                 break;
             case R.id.imPink:
                 drawableName="avatar_pink";
-                image = "drawable://"+R.drawable.avatar_pink;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_pink).toString();
                 break;
             case R.id.imRed:
                 drawableName="avatar_red";
-                image = "drawable://"+R.drawable.avatar_red;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_red).toString();
                 break;
             default:
                 drawableName="avatar_blue";
-                image = "drawable://"+R.drawable.avatar_blue;
+                image = new StringBuilder("drawable://").append(R.drawable.avatar_blue).toString();
                 break;
         }
         int resID = getResources().getIdentifier(drawableName, "drawable", getPackageName());
@@ -97,42 +97,47 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void btnLoginClick(View view){
-        username = (EditText) findViewById(R.id.txtUser);
-        password = (EditText) findViewById(R.id.txtPassword);
-        String user = username.getText().toString().trim();
-        //TODO james implement this login method
-        Profile USER = new Profile("","",1,"",null);// dummy profile
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
-        dR.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snap) {
-               Profile USER= snap.getValue(Profile.class);
-                String user = username.getText().toString().trim();
-                String pass = username.getText().toString().trim();
-               if(USER.get_name().equals(user) && USER.get_password()==pass){
+        try {
+            username = (EditText) findViewById(R.id.txtUser);
+            password = (EditText) findViewById(R.id.txtPassword);
+            String user = username.getText().toString().trim();
+            //TODO james implement this login method
+            Profile USER = new Profile("", "", 1, "", null);// dummy profile
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("profiles").child(user);
+            dR.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snap) {
+                    Profile USER = snap.getValue(Profile.class);
+                    String user = username.getText().toString().trim();
+                    String pass = username.getText().toString().trim();
+                    if (USER != null) { //Debug.
+                        if (USER.get_name().equals(user) && USER.get_password().equals(pass)) {
+                            //TOAST HERE
+                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
 
-                   //TOAST HERE
-                   Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
-
-                   Intent intent = new Intent(getApplicationContext(),home_page.class);
-                   intent.putExtra("Profile", USER);
-                   startActivityForResult (intent,0);
-               }
-               else{
-                   //TOAST HERE
-                   Toast.makeText(getApplicationContext(), "Failed to Login.", Toast.LENGTH_LONG).show();
-
-               }
-
-            }
-
-            @Override public void onCancelled(DatabaseError error) { }
+                            Intent intent = new Intent(getApplicationContext(), home_page.class);
+                            intent.putExtra("Profile", USER);
+                            startActivityForResult(intent, 0);
+                        } else {
+                            //TOAST HERE
+                            Toast.makeText(getApplicationContext(), "Failed to Login.", Toast.LENGTH_LONG).show();
+                        }
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Failed to Login. User does not exist.", Toast.LENGTH_LONG).show();
+                        // TODO Add a break here once database is setup
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                }
             });
 
-        Intent intent = new Intent(getApplicationContext(),home_page.class);
-        intent.putExtra("Profile", USER);
-        startActivityForResult (intent,0);
-
+            Intent intent = new Intent(getApplicationContext(), home_page.class);
+            intent.putExtra("Profile", USER);
+            startActivityForResult(intent, 0);
+        }catch(Exception e) {
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
     public void btnCreateAccountClick(View view) {
         try { //TODO implement a proper toast for failed creation
