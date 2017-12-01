@@ -14,7 +14,7 @@ public class Profile implements Serializable{
     private int _score;
     private String _type;
     private String _img;
-    private ArrayList<Task> Tasks;
+
 
     public Profile(){
 
@@ -26,7 +26,7 @@ public class Profile implements Serializable{
         _score = score;
         _type = type;
         _img = img;
-        Tasks = new ArrayList<>();
+
 
 
     }
@@ -76,15 +76,4 @@ public class Profile implements Serializable{
 
     }
 
-    public void removeTask(Task TaskToRemove){
-
-        Tasks.remove(TaskToRemove);
-
-
-
-    }
-    public void addTask(Task TaskToAdd){
-        Tasks.add(TaskToAdd);
-
-    }
 }
