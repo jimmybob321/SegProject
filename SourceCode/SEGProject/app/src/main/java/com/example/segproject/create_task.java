@@ -93,10 +93,9 @@ public class create_task extends AppCompatActivity {
 
 
     public void CreateTaskClick(View view){
-        if (TaskName.getText().toString().equals("")||TaskPriority.getText().toString().equals("")||TaskReward.getText().toString().equals("")){
+        if (TaskName.getText().toString().equals("")||TaskPriority.getText().toString().equals("")||TaskDate.getText().toString().equals("")||TaskReward.getText().toString().equals("")){
             Toast.makeText(this, "Empty Field, please fill all fields.", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        return;}
         if(!TaskUser.getText().toString().trim().equals("")) {
             createTask(TaskName.getText().toString().trim(), TaskDate.getText().toString().trim(), Integer.parseInt(TaskPriority.getText().toString().trim()), Integer.parseInt(TaskReward.getText().toString().trim()), TaskUser.getText().toString().trim());
         }

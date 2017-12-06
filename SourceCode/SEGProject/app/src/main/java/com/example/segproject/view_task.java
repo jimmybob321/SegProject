@@ -72,7 +72,8 @@ public class view_task extends AppCompatActivity {
 
         int scoreToAdd = compTask.getReward();
         USER.set_score(USER.get_score() + scoreToAdd);
-
+        databaseProfiles = FirebaseDatabase.getInstance().getReference("profiles");
+        databaseProfiles.child(USER.get_name()).child("_score").setValue(USER.get_score());
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
         DatabaseReference dR = FirebaseDatabase.getInstance().getReference("tasks").child(USER.get_name()).child(T.getTitle());
         dR.setValue(null);
@@ -84,7 +85,6 @@ public class view_task extends AppCompatActivity {
     public void declineTask(Task delTask){
         //USER.removeTask(delTask);
         T = delTask;
-        //TODO add to unassigned user once database is fixed
         String assign = T.getUser();
 
         databaseProfiles = FirebaseDatabase.getInstance().getReference("tasks");
