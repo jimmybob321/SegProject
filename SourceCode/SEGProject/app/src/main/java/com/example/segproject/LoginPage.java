@@ -169,6 +169,10 @@ public class LoginPage extends AppCompatActivity {
 
 
     //********function influenced by:************************
+    //This function as designed using the following resources, all rights and
+    //ideas for this belong to the author of the website, Vital Patel
+    //The code was modified by me to use SHA-256 as provided by the java MessageDigest
+    //function. SHA 256 was designed by the United States National Security Agency.
     //http://viralpatel.net/blogs/java-md5-hashing-salting-password/
     //https://docs.oracle.com/javase/7/docs/api/java/security/MessageDigest.html
     //https://docs.oracle.com/javase/7/docs/api/java/math/BigInteger.html
@@ -180,7 +184,7 @@ public class LoginPage extends AppCompatActivity {
         byte[] b = str.getBytes();//converts string to byte array
         b = digest.digest(b);//hashes byte array
         BigInteger num = new BigInteger(1,b);//converts bytearray into big integer
-        String hashed = num.toString(16);//converts BigInteger to string of hexadecimal
+        String hashed = num.toString(32);//converts BigInteger to string of hexadecimal
         return(hashed);
     }
 
@@ -188,6 +192,3 @@ public class LoginPage extends AppCompatActivity {
 
 
 }
-
-
-
